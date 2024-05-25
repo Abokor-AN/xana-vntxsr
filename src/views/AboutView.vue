@@ -26,7 +26,7 @@ const series = ref([
 </script>
 
 <template>
-  <h1>ABOUT PAGE !!!</h1>
+  <h1 class="text-3xl font-bold underline">ABOUT PAGE !!!</h1>
   <br />
   <br />
   <div id="chart">

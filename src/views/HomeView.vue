@@ -4,6 +4,6 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <h1>HOME PAGE !!!</h1>
+  <h1 class="text-3xl font-bold underline">HOME PAGE !!!</h1>
   <h2>{{ t("message.hello") }}</h2>
 </template>
