@@ -42,6 +42,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@schedule-x/drag-and-drop": "^1.42.1",
+    "@schedule-x/event-modal": "^1.42.1",
+    "@schedule-x/theme-default": "^1.42.1",
+    "@schedule-x/vue": "^1.38.0",
     "@tiptap/pm": "^2.4.0",
     "@tiptap/starter-kit": "^2.4.0",
     "@tiptap/vue-3": "^2.4.0",
