@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
-const { t } = useI18n();
+import { ref, onMounted } from "vue";
 
-import { useEditor, EditorContent } from "@tiptap/vue-3";
-import StarterKit from "@tiptap/starter-kit";
+const nodeVersion = ref("");
+const chromeVersion = ref("");
+const electronVersion = ref("");
 
-const editor = useEditor({
-  content: "<p>I’m running Tiptap with Vue.js. 🎉</p>",
-  extensions: [StarterKit],
+const nodeActionResult = ref<string>("");
+
+onMounted(() => {
+  if (
+    window.versions &&
+    typeof window.versions.node === "function" &&
+    typeof window.versions.chrome === "function" &&
+    typeof window.versions.electron === "function"
+  ) {
+    nodeVersion.value = window.versions.node();
+    chromeVersion.value = window.versions.chrome();
+    electronVersion.value = window.versions.electron();
+  }
 });
 </script>
-
 <template>
-  <h1 class="text-3xl font-bold underline">HOME PAGE !!!</h1>
-  <h2>{{ t("message.hello") }}</h2>
-  <br />
-  <br />
-  <editor-content :editor="editor" />
+  <p>Node version : {{ nodeVersion }}</p>
+  <p>Chrome version : {{ chromeVersion }}</p>
+  <p>Electron version : {{ electronVersion }}</p>
 </template>

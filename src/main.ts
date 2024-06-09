@@ -1,4 +1,10 @@
-import { app, BrowserWindow, Menu } from "electron";
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  session,
+  OnHeadersReceivedListenerDetails,
+} from "electron";
 import path from "path";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -30,6 +36,24 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  // Configure Content-Security-Policy header
+  session.defaultSession.webRequest.onHeadersReceived(
+    (
+      details: OnHeadersReceivedListenerDetails,
+      callback: (response: {
+        cancel?: boolean;
+        responseHeaders?: Record<string, string[]>;
+      }) => void
+    ) => {
+      callback({
+        responseHeaders: {
+          ...details.responseHeaders,
+          "Content-Security-Policy": ["script-src 'self';"],
+        },
+      });
+    }
+  );
 };
 
 // This method will be called when Electron has finished
